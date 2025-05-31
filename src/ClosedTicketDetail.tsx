@@ -3,19 +3,19 @@ import { NavBar } from 'antd-mobile'
 import { ClockCircleOutline } from 'antd-mobile-icons'
 import { getClosedWorkOrderById } from './MaintenanceHistory'
 
-export default function ClosedWorkOrderDetail() {
+export default function ClosedTicketDetail() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const order = id ? getClosedWorkOrderById(id) : null
 
   if (!order) {
-    return <div className="p-8 text-center text-gray-400">Work order not found.</div>
+    return <div className="p-8 text-center text-gray-400">Ticket not found.</div>
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-blue-50 pb-4">
       <NavBar back="Back" onBack={() => navigate(-1)} className="bg-white shadow-sm sticky top-0 z-10 text-lg font-semibold">
-        Closed Work Order
+        Closed Ticket
       </NavBar>
       <div className="p-4">
         <div className="bg-white rounded-2xl shadow-md px-4 py-4 mb-4">

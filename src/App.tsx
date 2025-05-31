@@ -1,20 +1,20 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import WorkOrderDetail from './WorkOrderDetail'
-import { WorkOrderList } from './WorkOrderList'
-import ClosedWorkOrderDetail from './ClosedWorkOrderDetail'
+import TicketDetail from './TicketDetail'
+import { TicketList } from './TicketList'
+import ClosedTicketDetail from './ClosedTicketDetail'
 import AIDiagnosis from './AIDiagnosis'
-import WorkOrderRecord from './WorkOrderRecord'
+import TicketRecord from './TicketRecord'
 import ReportPreview from './ReportPreview'
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<WorkOrderList />} />
-        <Route path="/workorder/:id" element={<WorkOrderDetail />} />
-        <Route path="/closed/:id" element={<ClosedWorkOrderDetail />} />
+        <Route path="/" element={<TicketList />} />
+        <Route path="/workorder/:id" element={<TicketDetail />} />
+        <Route path="/closed/:id" element={<ClosedTicketDetail />} />
         <Route path="/ai-diagnosis/:id" element={<AIDiagnosis />} />
-        <Route path="/workorder/:id/record" element={<WorkOrderRecord />} />
+        <Route path="/workorder/:id/record" element={<TicketRecord />} />
         <Route path="/report-preview" element={<ReportPreview />} />
       </Routes>
     </BrowserRouter>

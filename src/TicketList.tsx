@@ -1,7 +1,7 @@
 import { NavBar, SearchBar } from "antd-mobile"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { WorkOrderCard } from './WorkOrderCard'
+import { TicketCard } from './TicketCard'
 
 // Mock work order data
 const mockWorkOrders = [
@@ -34,7 +34,7 @@ const mockWorkOrders = [
     },
   ]
 
-export function WorkOrderList() {
+export function TicketList() {
     const [searchValue, setSearchValue] = useState('')
     const [workOrders, setWorkOrders] = useState(mockWorkOrders)
     const navigate = useNavigate()
@@ -74,7 +74,7 @@ export function WorkOrderList() {
         </div>
         <div className="px-2 pt-2 space-y-4 mx-2">
           {workOrders.map(order => (
-            <WorkOrderCard
+            <TicketCard
               key={order.id}
               order={order}
               onClick={() => navigate(`/workorder/${order.id}`)}

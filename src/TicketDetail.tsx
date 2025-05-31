@@ -37,7 +37,7 @@ const mockWorkOrders = [
   },
 ]
 
-export default function WorkOrderDetail() {
+export default function TicketDetail() {
   const navigate = useNavigate()
   const { id } = useParams<{ id: string }>()
   const order = mockWorkOrders.find(o => o.id === id)
@@ -49,7 +49,7 @@ export default function WorkOrderDetail() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-blue-50 pb-4">
       <NavBar back="Back" onBack={() => navigate(-1)} className="bg-white shadow-sm sticky top-0 z-10 text-lg font-semibold">
-        Work Order Detail
+        Ticket Detail
       </NavBar>
       <div className="p-4">
         <div className="bg-white rounded-2xl shadow-md px-4 py-4 mb-4">

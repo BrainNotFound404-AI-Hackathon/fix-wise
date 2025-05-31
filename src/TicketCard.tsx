@@ -1,7 +1,7 @@
 import { LocationOutline, ClockCircleOutline } from 'antd-mobile-icons';
 import { Tag } from 'antd-mobile';
 
-export interface WorkOrderCardProps {
+export interface TicketCardProps {
   order: {
     id: string;
     elevatorId: string;
@@ -14,7 +14,7 @@ export interface WorkOrderCardProps {
   onClick?: () => void;
 }
 
-export function WorkOrderCard({ order, onClick }: WorkOrderCardProps) {
+export function TicketCard({ order, onClick }: TicketCardProps) {
   return (
     <div
       onClick={onClick}

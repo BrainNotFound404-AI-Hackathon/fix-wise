@@ -3,10 +3,10 @@ import { NavBar, ImageUploader } from "antd-mobile";
 import { useState } from "react";
 import { App } from "antd";
 import { getClosedWorkOrderById } from "./MaintenanceHistory";
-import { WorkOrderCard } from "./WorkOrderCard";
+import { TicketCard } from "./TicketCard";
 import { PrimaryNavButton } from "./PrimaryNavButton";
 
-export default function WorkOrderRecord() {
+export default function TicketRecord() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { message } = App.useApp();
@@ -17,13 +17,13 @@ export default function WorkOrderRecord() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-blue-50 pb-4 flex flex-col">
       <NavBar back="Back" onBack={() => navigate(-1)} className="bg-white shadow-sm sticky top-0 z-10 text-lg font-semibold">
-        Work Order Record
+        Ticket Record
       </NavBar>
       <div className="p-4 flex-1 flex flex-col gap-4">
         {/* 顶部工单信息 */}
         <div className="mb-2">
           {order ? (
-            <WorkOrderCard
+            <TicketCard
               order={{
                 ...order,
                 location: (order as any).location || '',
