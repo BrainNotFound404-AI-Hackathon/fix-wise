@@ -3,6 +3,9 @@ import { Tag, NavBar } from 'antd-mobile'
 import { useNavigate, useParams } from 'react-router-dom'
 import { MaintenanceHistory } from './MaintenanceHistory'
 import { PrimaryNavButton } from './PrimaryNavButton'
+import { useEffect, useState } from 'react'
+import api from './api'
+import type { Ticket } from './model'
 
 const mockTickets = [
   {
@@ -40,7 +43,14 @@ const mockTickets = [
 export default function TicketDetail() {
   const navigate = useNavigate()
   const { id } = useParams<{ id: string }>()
-  const ticket = mockTickets.find(o => o.id === id)
+  const [ticket, setTicket] = useState<Ticket | null>(null)
+  const fetchTicket = async () => {
+    const response = await api.get(`/tickets/${id}`)
+    setTicket(response.data)
+  }
+  useEffect(() => {
+    fetchTicket()
+  }, [])
 
   if (!ticket) {
     return <div className="p-8 text-center text-gray-400">Work order not found.</div>

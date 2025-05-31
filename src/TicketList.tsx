@@ -1,7 +1,8 @@
 import { NavBar, SearchBar } from "antd-mobile"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { TicketCard } from './TicketCard'
+import api from "./api"
 
 const mockTickets = [
     {
@@ -35,6 +36,17 @@ const mockTickets = [
 
 export function TicketList() {
     const [searchValue, setSearchValue] = useState('')
+    const fetchTickets = async () => {
+      try {
+        const response = await api.get('/tickets')
+        setTickets(response.data)
+      } catch (error) {
+        console.error('获取工单列表失败:', error)
+      }
+    }
+    useEffect(() => {
+      fetchTickets()
+    }, [])
     const [tickets, setTickets] = useState(mockTickets)
     const navigate = useNavigate()
   
