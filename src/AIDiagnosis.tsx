@@ -1,10 +1,11 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { NavBar, Divider } from "antd-mobile";
 import {Bubble, Sender, useXAgent, useXChat} from "@ant-design/x";
-import { getClosedWorkOrderById } from "./MaintenanceHistory";
 import {App, type GetProp} from "antd";
 import { CheckCircleOutlined } from "@ant-design/icons";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import type { Ticket } from "./model";
+import api from "./api";
 
 const mockSimilarTickets = [
   {
@@ -49,13 +50,22 @@ export default function AIDiagnosis() {
   const {id} = useParams<{ id: string }>();
   const [value, setValue] = useState<string>('');
   const navigate = useNavigate();
-  const ticket = id ? getClosedWorkOrderById(id) : null;
+  const [ticket, setTicket] = useState<Ticket | null>(null);
+  useEffect(() => {
+    if (id) {
+       api.get(`/tickets/${id}`).then(response => {
+      console.log(response.data)
+      setTicket(response.data)
+      })
+    }
+  }, [id])
+
   const {message} = App.useApp();
 
   const [agent] = useXAgent<string, InputType, OutputType>({
     request: ({message}, {onUpdate, onSuccess, onError}) => {
       const request = {
-        session_id: ticket!.id,
+        session_id: ticket?.id,
         message: message
       }
       fetch('http://localhost:8000/lang_chat', {
