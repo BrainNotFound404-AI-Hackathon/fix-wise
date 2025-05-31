@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { MaintenanceHistory } from './MaintenanceHistory'
 import { PrimaryNavButton } from './PrimaryNavButton'
 
-const mockWorkOrders = [
+const mockTickets = [
   {
     id: 'WO-2024-001',
     elevatorId: 'EL-001',
@@ -40,9 +40,9 @@ const mockWorkOrders = [
 export default function TicketDetail() {
   const navigate = useNavigate()
   const { id } = useParams<{ id: string }>()
-  const order = mockWorkOrders.find(o => o.id === id)
+  const ticket = mockTickets.find(o => o.id === id)
 
-  if (!order) {
+  if (!ticket) {
     return <div className="p-8 text-center text-gray-400">Work order not found.</div>
   }
 
@@ -55,26 +55,26 @@ export default function TicketDetail() {
         <div className="bg-white rounded-2xl shadow-md px-4 py-4 mb-4">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
-              <span className="font-bold text-gray-800 text-base tracking-wide">{order.elevatorId}</span>
-              <span className="text-xs text-gray-400">{order.id}</span>
+              <span className="font-bold text-gray-800 text-base tracking-wide">{ticket.elevatorId}</span>
+              <span className="text-xs text-gray-400">{ticket.id}</span>
             </div>
             <div className="flex gap-1.5">
-              <Tag color={order.priority === 'High' ? 'danger' : 'warning'} className="text-xs px-2 py-0.5 rounded-md">
-                {order.priority}
+              <Tag color={ticket.priority === 'High' ? 'danger' : 'warning'} className="text-xs px-2 py-0.5 rounded-md">
+                {ticket.priority}
               </Tag>
-              <Tag color="primary" className="text-xs px-2 py-0.5 rounded-md">{order.status}</Tag>
+              <Tag color="primary" className="text-xs px-2 py-0.5 rounded-md">{ticket.status}</Tag>
             </div>
           </div>
           <div className="flex items-center gap-1 text-sm text-gray-600 mb-1">
             <LocationOutline className="text-gray-400 text-base" />
-            <span>{order.location}</span>
+            <span>{ticket.location}</span>
           </div>
           <div className="text-sm text-gray-800 mb-1">
-            {order.description}
+            {ticket.description}
           </div>
           <div className="flex items-center gap-1 text-xs text-gray-400">
             <ClockCircleOutline className="text-gray-400 text-base" />
-            <span>{order.createTime}</span>
+            <span>{ticket.createTime}</span>
           </div>
         </div>
         {/* AI 建议区域 */}
@@ -83,20 +83,20 @@ export default function TicketDetail() {
           <div>
             <div className="font-semibold text-blue-700 mb-1">AI Suggestion</div>
             <div className="text-sm text-blue-900 leading-relaxed whitespace-pre-line">
-              {order.aiSuggestion}
+              {ticket.aiSuggestion}
             </div>
           </div>
         </div>
         {/* 维修历史区域 */}
-        <MaintenanceHistory elevatorId={order.elevatorId} />
+        <MaintenanceHistory elevatorId={ticket.elevatorId} />
         <div className="mt-8 flex flex-col gap-3 justify-center items-center">
           <PrimaryNavButton
             text="AI Troubleshooting"
-            onClick={() => navigate(`/ai-diagnosis/${order.id}`)}
+            onClick={() => navigate(`/ai-diagnosis/${ticket.id}`)}
           />
           <button
             className="bg-green-600 text-white rounded-lg px-6 py-2 font-semibold shadow hover:bg-green-700 transition w-full"
-            onClick={() => navigate(`/workorder/${order.id}/record`)}
+            onClick={() => navigate(`/ticket/${ticket.id}/record`)}
           >
             Mark as Resolved
           </button>

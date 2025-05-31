@@ -2,7 +2,7 @@ import { LocationOutline, ClockCircleOutline } from 'antd-mobile-icons';
 import { Tag } from 'antd-mobile';
 
 export interface TicketCardProps {
-  order: {
+  ticketOverview: {
     id: string;
     elevatorId: string;
     location: string;
@@ -14,7 +14,7 @@ export interface TicketCardProps {
   onClick?: () => void;
 }
 
-export function TicketCard({ order, onClick }: TicketCardProps) {
+export function TicketCard({ ticketOverview: ticket, onClick }: TicketCardProps) {
   return (
     <div
       onClick={onClick}
@@ -22,27 +22,27 @@ export function TicketCard({ order, onClick }: TicketCardProps) {
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="font-bold text-gray-800 text-base tracking-wide">{order.elevatorId}</span>
-          <span className="text-xs text-gray-400">{order.id}</span>
+          <span className="font-bold text-gray-800 text-base tracking-wide">{ticket.elevatorId}</span>
+          <span className="text-xs text-gray-400">{ticket.id}</span>
         </div>
         <div className="flex gap-1.5">
-          <Tag color={order.priority === 'High' ? 'danger' : 'warning'} className="text-xs px-2 py-0.5 rounded-md">
-            {order.priority}
+          <Tag color={ticket.priority === 'High' ? 'danger' : 'warning'} className="text-xs px-2 py-0.5 rounded-md">
+            {ticket.priority}
           </Tag>
-          <Tag color="primary" className="text-xs px-2 py-0.5 rounded-md">{order.status}</Tag>
+          <Tag color="primary" className="text-xs px-2 py-0.5 rounded-md">{ticket.status}</Tag>
         </div>
       </div>
       <div className="border-t border-dashed border-gray-200 my-1" />
       <div className="flex items-center gap-1 text-sm text-gray-600">
         <LocationOutline className="text-gray-400 text-base" />
-        <span>{order.location}</span>
+        <span>{ticket.location}</span>
       </div>
       <div className="text-sm text-gray-800 leading-snug">
-        {order.description}
+        {ticket.description}
       </div>
       <div className="flex items-center gap-1 text-xs text-gray-400">
         <ClockCircleOutline className="text-gray-400 text-base" />
-        <span>{order.createTime}</span>
+        <span>{ticket.createTime}</span>
       </div>
     </div>
   );

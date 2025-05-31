@@ -12,7 +12,4 @@ export interface Ticket {
     result?: string;           // 维修结果（人工填写）
     images?: string[];         // 相关图片URL数组
     aiSuggestion?: string;     // AI生成的重点排查建议
-  }
-
-
-  
+}

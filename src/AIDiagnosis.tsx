@@ -28,7 +28,7 @@ Troubleshooting Steps for Elevator Door Issues:
 export default function AIDiagnosis() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const order = id ? getClosedWorkOrderById(id) : null;
+  const ticket = id ? getClosedWorkOrderById(id) : null;
   const { message } = App.useApp();
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-blue-50 pb-4 flex flex-col">
@@ -69,7 +69,7 @@ export default function AIDiagnosis() {
           <button 
             className="flex items-center gap-2 bg-green-50 text-green-600 px-4 py-2 rounded-lg hover:bg-green-100 active:bg-green-200 transition-colors shadow"
             onClick={() => {
-              navigate(`/workorder/${id}/record`);
+              navigate(`/ticket/${id}/record`);
             }}
           >
             <CheckCircleOutlined className="text-lg" />

@@ -3,8 +3,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { TicketCard } from './TicketCard'
 
-// Mock work order data
-const mockWorkOrders = [
+const mockTickets = [
     {
       id: 'WO-2024-001',
       elevatorId: 'EL-001',
@@ -36,16 +35,16 @@ const mockWorkOrders = [
 
 export function TicketList() {
     const [searchValue, setSearchValue] = useState('')
-    const [workOrders, setWorkOrders] = useState(mockWorkOrders)
+    const [tickets, setTickets] = useState(mockTickets)
     const navigate = useNavigate()
   
     const handleSearch = (value: string) => {
       setSearchValue(value)
-      const filtered = mockWorkOrders.filter(order => 
-        order.elevatorId.toLowerCase().includes(value.toLowerCase()) ||
-        order.location.toLowerCase().includes(value.toLowerCase())
+      const filtered = mockTickets.filter(ticket => 
+        ticket.elevatorId.toLowerCase().includes(value.toLowerCase()) ||
+        ticket.location.toLowerCase().includes(value.toLowerCase())
       )
-      setWorkOrders(filtered)
+      setTickets(filtered)
     }
   
     return (
@@ -73,15 +72,15 @@ export function TicketList() {
           />
         </div>
         <div className="px-2 pt-2 space-y-4 mx-2">
-          {workOrders.map(order => (
+          {tickets.map(ticket => (
             <TicketCard
-              key={order.id}
-              order={order}
-              onClick={() => navigate(`/workorder/${order.id}`)}
+              key={ticket.id}
+              ticketOverview={ticket}
+              onClick={() => navigate(`/ticket/${ticket.id}`)}
             />
           ))}
-          {workOrders.length === 0 && (
-            <div className="text-center text-gray-400 py-10 text-sm">No work orders found.</div>
+          {tickets.length === 0 && (
+            <div className="text-center text-gray-400 py-10 text-sm">No tickets found.</div>
           )}
         </div>
       </div>

@@ -11,10 +11,10 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<TicketList />} />
-        <Route path="/workorder/:id" element={<TicketDetail />} />
+        <Route path="/ticket/:id" element={<TicketDetail />} />
         <Route path="/closed/:id" element={<ClosedTicketDetail />} />
         <Route path="/ai-diagnosis/:id" element={<AIDiagnosis />} />
-        <Route path="/workorder/:id/record" element={<TicketRecord />} />
+        <Route path="/ticket/:id/record" element={<TicketRecord />} />
         <Route path="/report-preview" element={<ReportPreview />} />
       </Routes>
     </BrowserRouter>

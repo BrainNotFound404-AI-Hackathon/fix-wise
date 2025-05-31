@@ -2,7 +2,7 @@ import { ClockCircleOutline } from 'antd-mobile-icons'
 import { useNavigate } from 'react-router-dom'
 
 // mock 数据
-const mockWorkOrders = [
+const mockTickets = [
   {
     id: 'WO-2024-001',
     elevatorId: 'EL-001',
@@ -36,11 +36,11 @@ const mockWorkOrders = [
 ]
 
 export function getClosedWorkOrderById(id: string) {
-  return mockWorkOrders.find(o => o.id === id)
+  return mockTickets.find(o => o.id === id)
 }
 
 export function MaintenanceHistory({ elevatorId }: { elevatorId: string }) {
-  const records = mockWorkOrders.filter(
+  const records = mockTickets.filter(
     o => o.elevatorId === elevatorId && o.status === 'Closed'
   )
   const navigate = useNavigate()

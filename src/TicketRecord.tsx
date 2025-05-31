@@ -12,7 +12,7 @@ export default function TicketRecord() {
   const { message } = App.useApp();
   const [fileList, setFileList] = useState<any[]>([]);
   // 获取工单信息（可根据实际数据源调整）
-  const order = getClosedWorkOrderById(id || '');
+  const ticket = getClosedWorkOrderById(id || '');
   const [solution, setSolution] = useState("");
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-blue-50 pb-4 flex flex-col">
@@ -22,12 +22,12 @@ export default function TicketRecord() {
       <div className="p-4 flex-1 flex flex-col gap-4">
         {/* 顶部工单信息 */}
         <div className="mb-2">
-          {order ? (
+          {ticket ? (
             <TicketCard
-              order={{
-                ...order,
-                location: (order as any).location || '',
-                priority: (order as any).priority || '',
+              ticketOverview={{
+                ...ticket,
+                location: (ticket as any).location || '',
+                priority: (ticket as any).priority || '',
               }}
             />
           ) : (

@@ -7,7 +7,7 @@ import { PrimaryNavButton } from "./PrimaryNavButton";
 
 const mockReport = {
   elevatorId: 'EL-001',
-  workOrderId: 'WO-2024-001',
+  ticketId: 'WO-2024-001',
   location: 'Tech Park Building A',
   time: '2024-03-20 10:30',
   solution: 'Replaced the door sensor and tested successfully.',
@@ -31,7 +31,7 @@ export default function ReportPreview() {
           <div className="bg-white rounded-xl shadow-md px-6 py-4 w-full max-w-md border border-blue-100 flex flex-col gap-2">
             <div className="flex items-center gap-2 mb-1">
               <FileTextOutlined className="text-blue-500 text-xl" />
-              <span className="font-bold text-gray-800 text-base tracking-wide">{mockReport.workOrderId}</span>
+              <span className="font-bold text-gray-800 text-base tracking-wide">{mockReport.ticketId}</span>
               <span className="text-xs text-gray-400">{mockReport.elevatorId}</span>
             </div>
             <div className="flex flex-col gap-1 text-sm text-gray-600">
