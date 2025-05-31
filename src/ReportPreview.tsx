@@ -1,9 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { NavBar, TextArea } from "antd-mobile";
 import { useState } from "react";
 import { App } from "antd";
 import { FileTextOutlined } from '@ant-design/icons';
 import { PrimaryNavButton } from "./PrimaryNavButton";
+import api from "./api";
 
 const mockReport = {
   elevatorId: 'EL-001',
@@ -19,6 +20,7 @@ export default function ReportPreview() {
   const { message } = App.useApp();
   const [solution, setSolution] = useState(mockReport.solution);
   const [result, setResult] = useState(mockReport.result);
+  const { id } = useParams<{ id: string }>();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-blue-50 pb-6 flex flex-col">
@@ -78,6 +80,7 @@ export default function ReportPreview() {
           text="Confirm & Submit"
           onClick={() => {
             message.success("Report submitted!");
+            api.put(`/tickets/${id}`);
             navigate(-1);
           }}
         />

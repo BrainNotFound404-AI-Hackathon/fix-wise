@@ -18,7 +18,7 @@ export default function App() {
           <Route path="/closed/:id" element={<ClosedTicketDetail />} />
           <Route path="/ai-diagnosis/:id" element={<AIDiagnosis />} />
           <Route path="/ticket/:id/record" element={<TicketRecord />} />
-          <Route path="/report-preview" element={<ReportPreview />} />
+          <Route path="/report-preview/:id" element={<ReportPreview />} />
         </Routes>
       </BrowserRouter>
     </AntdApp>

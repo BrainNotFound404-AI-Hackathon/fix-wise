@@ -70,14 +70,10 @@ export default function TicketRecord() {
         {/* 生成报告按钮 */}
         <PrimaryNavButton 
           text="Generate Report" 
-          onClick={() => navigate('/report-preview', { state: { solution, fileList } })} 
+          onClick={() => navigate(`/report-preview/${id}`, { state: { solution, fileList } })} 
         />
       </div>
     </div>
   );
-}
-
-function getTicketById(arg0: string) {
-  throw new Error("Function not implemented.");
 }
 
