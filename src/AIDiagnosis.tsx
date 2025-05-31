@@ -73,7 +73,7 @@ export default function AIDiagnosis() {
             }}
           >
             <CheckCircleOutlined className="text-lg" />
-            <span className="font-medium">标记为已解决</span>
+            <span className="font-medium">Mark as resolved</span>
           </button>
         </div>
         <div className="mt-auto">
