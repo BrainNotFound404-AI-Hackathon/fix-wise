@@ -4,12 +4,12 @@ import { Tag } from 'antd-mobile';
 export interface TicketCardProps {
   ticketOverview: {
     id: string;
-    elevatorId: string;
+    elevator_id: string;
     location: string;
     description: string;
     status: string;
     priority: string;
-    createTime: string;
+    create_time: string;
   };
   onClick?: () => void;
 }
@@ -22,7 +22,7 @@ export function TicketCard({ ticketOverview: ticket, onClick }: TicketCardProps)
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="font-bold text-gray-800 text-base tracking-wide">{ticket.elevatorId}</span>
+          <span className="font-bold text-gray-800 text-base tracking-wide">{ticket.elevator_id}</span>
           <span className="text-xs text-gray-400">{ticket.id}</span>
         </div>
         <div className="flex gap-1.5">
@@ -42,7 +42,7 @@ export function TicketCard({ ticketOverview: ticket, onClick }: TicketCardProps)
       </div>
       <div className="flex items-center gap-1 text-xs text-gray-400">
         <ClockCircleOutline className="text-gray-400 text-base" />
-        <span>{ticket.createTime}</span>
+        <span>{ticket.create_time}</span>
       </div>
     </div>
   );

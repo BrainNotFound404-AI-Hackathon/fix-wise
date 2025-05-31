@@ -32,7 +32,7 @@ export default function TicketDetail() {
         <div className="bg-white rounded-2xl shadow-md px-4 py-4 mb-4">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
-              <span className="font-bold text-gray-800 text-base tracking-wide">{ticket.elevatorId}</span>
+              <span className="font-bold text-gray-800 text-base tracking-wide">{ticket.elevator_id}</span>
               <span className="text-xs text-gray-400">{ticket.id}</span>
             </div>
             <div className="flex gap-1.5">
@@ -51,7 +51,7 @@ export default function TicketDetail() {
           </div>
           <div className="flex items-center gap-1 text-xs text-gray-400">
             <ClockCircleOutline className="text-gray-400 text-base" />
-            <span>{ticket.createTime}</span>
+            <span>{ticket.create_time}</span>
           </div>
         </div>
         {/* AI 建议区域 */}
@@ -60,12 +60,12 @@ export default function TicketDetail() {
           <div>
             <div className="font-semibold text-blue-700 mb-1">AI Suggestion</div>
             <div className="text-sm text-blue-900 leading-relaxed whitespace-pre-line">
-              {ticket.aiSuggestion}
+              {ticket.ai_suggestion}
             </div>
           </div>
         </div>
         {/* 维修历史区域 */}
-        <MaintenanceHistory elevatorId={ticket.elevatorId} />
+        <MaintenanceHistory elevatorId={ticket.elevator_id} />
         <div className="mt-8 flex flex-col gap-3 justify-center items-center">
           <PrimaryNavButton
             text="AI Troubleshooting"

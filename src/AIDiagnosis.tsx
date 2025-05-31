@@ -91,8 +91,9 @@ export default function AIDiagnosis() {
 
   const [agent] = useXAgent<string, InputType, OutputType>({
     request: ({message}, {onUpdate, onSuccess, onError}) => {
+      console.log(ticket?.id ?? id)
       const request = {
-        session_id: ticket?.id,
+        session_id: ticket?.id ?? id,
         message: message
       }
       fetch('http://localhost:8000/lang_chat_stream', {

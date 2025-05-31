@@ -1,10 +1,11 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { NavBar, ImageUploader } from "antd-mobile";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { App } from "antd";
-import { getClosedWorkOrderById } from "./MaintenanceHistory";
 import { TicketCard } from "./TicketCard";
 import { PrimaryNavButton } from "./PrimaryNavButton";
+import type { Ticket } from "./model";
+import api from "./api";
 
 export default function TicketRecord() {
   const { id } = useParams<{ id: string }>();
@@ -12,9 +13,14 @@ export default function TicketRecord() {
   const { message } = App.useApp();
   const [fileList, setFileList] = useState<any[]>([]);
   // 获取工单信息（可根据实际数据源调整）
-  const ticket = getClosedWorkOrderById(id || '');
   const [solution, setSolution] = useState("");
-  return (
+  const [ticket, setTicket] = useState<Ticket | null>(null);
+  useEffect(() => {
+    api.get(`/tickets/${id}`).then(response => {
+      setTicket(response.data);
+    });
+  }, [id]);
+  return (  
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-blue-50 pb-4 flex flex-col">
       <NavBar back="Back" onBack={() => navigate(-1)} className="bg-white shadow-sm sticky top-0 z-10 text-lg font-semibold">
         Ticket Record
@@ -28,6 +34,8 @@ export default function TicketRecord() {
                 ...ticket,
                 location: (ticket as any).location || '',
                 priority: (ticket as any).priority || '',
+                elevator_id: (ticket as any).elevator_id || '',
+                create_time: (ticket as any).create_time || '',
               }}
             />
           ) : (
@@ -67,5 +75,9 @@ export default function TicketRecord() {
       </div>
     </div>
   );
+}
+
+function getTicketById(arg0: string) {
+  throw new Error("Function not implemented.");
 }
 

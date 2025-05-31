@@ -87,7 +87,16 @@ export function TicketList() {
           {tickets.map(ticket => (
             <TicketCard
               key={ticket.id}
-              ticketOverview={ticket}
+              ticketOverview={{
+                ...ticket,
+                elevator_id: ticket.elevatorId,
+                create_time: ticket.createTime,
+                status: ticket.status,
+                priority: ticket.priority,
+                description: ticket.description,
+                location: ticket.location,
+                id: ticket.id,
+              }}
               onClick={() => navigate(`/ticket/${ticket.id}`)}
             />
           ))}
