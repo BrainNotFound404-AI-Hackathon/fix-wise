@@ -69,7 +69,7 @@ export default function AIDiagnosis() {
           <button 
             className="flex items-center gap-2 bg-green-50 text-green-600 px-4 py-2 rounded-lg hover:bg-green-100 active:bg-green-200 transition-colors shadow"
             onClick={() => {
-              message.success("问题已标记为已解决！");
+              navigate(`/workorder/${id}/record`);
             }}
           >
             <CheckCircleOutlined className="text-lg" />

@@ -2,6 +2,7 @@ import { LocationOutline, ClockCircleOutline, FileOutline } from 'antd-mobile-ic
 import { Tag, NavBar } from 'antd-mobile'
 import { useNavigate, useParams } from 'react-router-dom'
 import { MaintenanceHistory } from './MaintenanceHistory'
+import { PrimaryNavButton } from './PrimaryNavButton'
 
 const mockWorkOrders = [
   {
@@ -89,12 +90,10 @@ export default function WorkOrderDetail() {
         {/* 维修历史区域 */}
         <MaintenanceHistory elevatorId={order.elevatorId} />
         <div className="mt-8 flex justify-center">
-          <button
-            className="bg-blue-600 text-white rounded-lg px-6 py-2 font-semibold shadow hover:bg-blue-700 transition"
+          <PrimaryNavButton
+            text="AI Troubleshooting"
             onClick={() => navigate(`/ai-diagnosis/${order.id}`)}
-          >
-            AI Troubleshooting
-          </button>
+          />
         </div>
       </div>
     </div>
