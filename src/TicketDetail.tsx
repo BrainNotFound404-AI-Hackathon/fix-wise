@@ -7,39 +7,6 @@ import { useEffect, useState } from 'react'
 import api from './api'
 import type { Ticket } from './model'
 
-const mockTickets = [
-  {
-    id: 'WO-2024-001',
-    elevatorId: 'EL-001',
-    location: 'Tech Park Building A',
-    description: 'Elevator door cannot close properly',
-    status: 'Pending',
-    priority: 'High',
-    createTime: '2024-03-20 10:30',
-    aiSuggestion: 'Check the door sensor and motor. Review the last 3 maintenance records. Refer to manual section 4.2 for door troubleshooting.'
-  },
-  {
-    id: 'WO-2024-002',
-    elevatorId: 'EL-002',
-    location: 'Tech Park Building B',
-    description: 'Unusual noise during elevator operation',
-    status: 'Pending',
-    priority: 'Medium',
-    createTime: '2024-03-20 09:15',
-    aiSuggestion: 'Inspect the pulley and lubrication. Check alarm history for similar issues. See manual section 5.1.'
-  },
-  {
-    id: 'WO-2024-003',
-    elevatorId: 'EL-003',
-    location: 'Tech Park Building C',
-    description: 'Elevator buttons not responding',
-    status: 'Pending',
-    priority: 'High',
-    createTime: '2024-03-20 08:45',
-    aiSuggestion: 'Test the control panel. Review last alarm logs. Refer to manual section 3.4.'
-  },
-]
-
 export default function TicketDetail() {
   const navigate = useNavigate()
   const { id } = useParams<{ id: string }>()
@@ -114,4 +81,4 @@ export default function TicketDetail() {
       </div>
     </div>
   )
-} 
+}
