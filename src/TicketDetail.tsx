@@ -89,11 +89,17 @@ export default function TicketDetail() {
         </div>
         {/* 维修历史区域 */}
         <MaintenanceHistory elevatorId={order.elevatorId} />
-        <div className="mt-8 flex justify-center">
+        <div className="mt-8 flex flex-col gap-3 justify-center items-center">
           <PrimaryNavButton
             text="AI Troubleshooting"
             onClick={() => navigate(`/ai-diagnosis/${order.id}`)}
           />
+          <button
+            className="bg-green-600 text-white rounded-lg px-6 py-2 font-semibold shadow hover:bg-green-700 transition w-full"
+            onClick={() => navigate(`/workorder/${order.id}/record`)}
+          >
+            Mark as Resolved
+          </button>
         </div>
       </div>
     </div>
