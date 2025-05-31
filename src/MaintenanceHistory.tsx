@@ -36,6 +36,7 @@ const mockTickets = [
 ]
 
 export function getClosedWorkOrderById(id: string) {
+  // TODO 使用真实ticket替换
   return mockTickets.find(o => o.id === id)
 }
 
@@ -73,4 +74,4 @@ export function MaintenanceHistory({ elevatorId }: { elevatorId: string }) {
       </div>
     </div>
   )
-} 
+}

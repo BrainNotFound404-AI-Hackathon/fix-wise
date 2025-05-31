@@ -53,20 +53,52 @@ export default function AIDiagnosis() {
   const {message} = App.useApp();
 
   const [agent] = useXAgent<string, InputType, OutputType>({
-    request: ({message}, {onUpdate, onSuccess}) => {
-      let times = 0;
-      const chunks: OutputType[] = [];
-      const id = setInterval(() => {
-        times += 1;
-        const chunk = `Thinking...(${times}/3)`;
-        onUpdate(chunk);
-        chunks.push(chunk);
-        if (times >= 3) {
-          onUpdate(`It's funny that you ask: ${message}`);
-          onSuccess(chunks);
-          clearInterval(id);
+    request: ({message}, {onUpdate, onSuccess, onError}) => {
+      const request = {
+        session_id: ticket!.id,
+        message: message
+      }
+      fetch('http://localhost:8000/lang_chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(request)
+      }).then(response => {
+        if (!response.ok || !response.body) {
+          const err = new Error(`HTTP error! status: ${response.status}`)
+          onError(err)
+          throw err;
         }
-      }, 500);
+        const decoder = new TextDecoder("utf-8")
+
+        const reader = response.body.getReader();
+        const stream = new ReadableStream({
+          start(controller) {
+            function push() {
+              const chunks: OutputType[] = []
+              reader.read().then(({ done, value }) => {
+                if (done) {
+                  onSuccess(chunks)
+                  controller.close();
+                  return;
+                }
+                const chunk = decoder.decode(value, {stream: true})
+                onUpdate(chunk);
+                chunks.push(chunk);
+                controller.enqueue(value);
+                push();
+              }).catch(err => {
+                console.error('Error reading the stream:', err);
+                controller.error(err);
+              });
+            }
+            push();
+          }
+        });
+
+        return new Response(stream).text()
+      })
     },
   });
 
