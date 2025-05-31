@@ -1,4 +1,4 @@
-import { LocationOutline, ClockCircleOutline, FileOutline } from 'antd-mobile-icons'
+import { LocationOutline, ClockCircleOutline, FileOutline, DownlandOutline, UpOutline } from 'antd-mobile-icons'
 import { Tag, NavBar } from 'antd-mobile'
 import { useNavigate, useParams } from 'react-router-dom'
 import { MaintenanceHistory } from './MaintenanceHistory'
@@ -6,11 +6,13 @@ import { PrimaryNavButton } from './PrimaryNavButton'
 import { useEffect, useState } from 'react'
 import api from './api'
 import type { Ticket } from './model'
+import ReactMarkdown from 'react-markdown'
 
 export default function TicketDetail() {
   const navigate = useNavigate()
   const { id } = useParams<{ id: string }>()
   const [ticket, setTicket] = useState<Ticket | null>(null)
+  const [expanded, setExpanded] = useState(false)
   const fetchTicket = async () => {
     const response = await api.get(`/tickets/${id}`)
     setTicket(response.data)
@@ -55,12 +57,18 @@ export default function TicketDetail() {
           </div>
         </div>
         {/* AI 建议区域 */}
-        <div className="bg-blue-50 rounded-xl shadow-inner px-4 py-3 flex gap-2 items-start">
+        <div
+          className="bg-blue-50 rounded-xl shadow-inner px-4 py-3 flex gap-2 items-start cursor-pointer hover:bg-blue-100 transition-colors"
+          onClick={() => setExpanded(!expanded)}
+        >
           <FileOutline className="text-blue-400 text-xl mt-0.5" />
-          <div>
-            <div className="font-semibold text-blue-700 mb-1">AI Suggestion</div>
-            <div className="text-sm text-blue-900 leading-relaxed whitespace-pre-line">
-              {ticket.ai_suggestion}
+          <div className="flex-1">
+            <div className="font-semibold text-blue-700 mb-1 flex items-center justify-between">
+              <span>AI Suggestion</span>
+              {expanded ? <UpOutline /> : <DownlandOutline />}
+            </div>
+            <div className={`text-sm text-blue-900 leading-relaxed ${!expanded ? 'line-clamp-3' : ''}`}>
+              <ReactMarkdown>{ticket.ai_suggestion}</ReactMarkdown>
             </div>
           </div>
         </div>
