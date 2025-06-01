@@ -10,6 +10,8 @@
 
 ---
 
+![Elevator Maintenance Techanician Workflow](public/workflow.png)
+
 ### UI Design
 
 #### Tech Stack
@@ -33,8 +35,10 @@
     - Display the structured report for this operation (including text, images, suggestions, etc.)
     - One-click “Submit Work Order”
 
+![Techanician Workflow - all process](public/all.png)
+
 ---
 
 ### Demo Flow
 
-- Judges can experience the full loop: “Select Work Order → View AI Suggestions → Voice Description → Photo Upload → Auto-Generated Report”, directly feeling the convenience of “Information Aggregation + AI Report”.
+- Judges can experience the full loop: “Select Work Order → View AI Suggestions → Voice/Text Description → Photo Upload → Auto-Generated Report”, directly feeling the convenience of “Information Aggregation + AI Report”.
