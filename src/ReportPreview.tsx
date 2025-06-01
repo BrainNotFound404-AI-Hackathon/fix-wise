@@ -46,8 +46,8 @@ export default function ReportPreview() {
           session_id: id,
           messages: []
         });
-        setSolution(response.data.response.solutions);
-        setResult(response.data.response.results);
+        setSolution(response.data.solutions);
+        setResult(response.data.results);
       } catch (error) {
         console.error('生成报告失败:', error);
         message.error('Failed to generate a report');

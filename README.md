@@ -1,36 +1,40 @@
-### 用户故事
+### User Story
 
-- 电梯现场技师接到工单
-- 用手机/平板 App 打开电梯维护助手
-- 输入/扫描电梯编号（或选择工单）
-- 系统自动拉取该电梯的历史故障、报警记录、手册摘要，生成**重点排查建议**
-- 技师现场用语音输入“我更换了门机，已测试正常”，App 自动转成结构化报告
-- 技师拍照上传新部件照片，AI自动识别为“门机”，并附到报告
-- 一键提交工单报告
+- The elevator technician receives a work order.
+- Opens the Elevator Maintenance Assistant app on a mobile phone/tablet.
+- Inputs or scans the elevator ID (or selects a work order).
+- The system automatically retrieves the elevator’s historical faults, alarm records, and manual summaries, generating **key troubleshooting suggestions**.
+- The technician uses voice input on-site, e.g., “I replaced the door operator, tested and it works fine.” The app automatically converts this into a structured report.
+- The technician uploads a photo of the new part; AI automatically recognizes it as a “door operator” and attaches it to the report.
+- One-click submission of the work order report.
 
+---
 
-### UI 设计
-#### 技术栈
-- Antd mobile
-- Antd x
+### UI Design
 
-#### Demo页面（页面越少越好，流程要流畅）
+#### Tech Stack
+- Antd Mobile
+- Antd X
 
-1. **工单选择页**
-    - 可输入电梯编号，有搜索框
-    - 显示一个工单列表
-2. **工单详情&AI建议页**
-    - 显示工单详情（如位置、编号、故障描述）
-    - 一键生成/展示AI“重点排查建议”（聚合历史+报警+手册）
-3. **维修操作录入页**
-    - **语音输入**（点麦克风，录一句，转文字自动填到表单）
-    - **图片上传**（可选本地图片或手机拍照）
-    - 自动显示“已识别部件：门机”
-    - 可手动添加补充说明
-4. **报告预览与提交页**
-    - 展示本次操作的结构化报告（包含文本、图片、建议等）
-    - 一键“提交工单”
+#### Demo Pages
 
-### Demo流程
+1. **Work Order Selection Page**
+    - Input elevator ID, with a search box
+    - Display a list of work orders
+2. **Work Order Detail & AI Suggestion Page**
+    - Show work order details (location, ID, fault description, etc.)
+    - One-click to generate/display AI “Key Troubleshooting Suggestions” (aggregated from history, alarms, and manuals)
+3. **Maintenance Operation Entry Page**
+    - **Voice Input** (tap microphone, record a sentence, auto-convert to text and fill the form)
+    - **Image Upload** (select from local or take a photo)
+    - Automatically display “Recognized Part: Door Operator”
+    - Option to manually add additional notes
+4. **Report Preview & Submission Page**
+    - Display the structured report for this operation (including text, images, suggestions, etc.)
+    - One-click “Submit Work Order”
 
-- 评委可全程体验“选工单——看AI建议——语音描述——拍照上传——自动生成报告”的闭环，直观感受到“信息聚合+AI报告”的便捷。
+---
+
+### Demo Flow
+
+- Judges can experience the full loop: “Select Work Order → View AI Suggestions → Voice Description → Photo Upload → Auto-Generated Report”, directly feeling the convenience of “Information Aggregation + AI Report”.
