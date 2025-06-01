@@ -3,36 +3,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { TicketCard } from './TicketCard'
 import api from "./api"
-
-const mockTickets = [
-    {
-      id: 'WO-2024-001',
-      elevatorId: 'EL-001',
-      location: 'Tech Park Building A',
-      description: 'Elevator door cannot close properly',
-      status: 'Pending',
-      priority: 'High',
-      createTime: '2024-03-20 10:30',
-    },
-    {
-      id: 'WO-2024-002',
-      elevatorId: 'EL-002',
-      location: 'Tech Park Building B',
-      description: 'Unusual noise during elevator operation',
-      status: 'Pending',
-      priority: 'Medium',
-      createTime: '2024-03-20 09:15',
-    },
-    {
-      id: 'WO-2024-003',
-      elevatorId: 'EL-003',
-      location: 'Tech Park Building C',
-      description: 'Elevator buttons not responding',
-      status: 'Pending',
-      priority: 'High',
-      createTime: '2024-03-20 08:45',
-    },
-  ]
+import type { Ticket } from "./model"
 
 export function TicketList() {
     const [searchValue, setSearchValue] = useState('')
@@ -47,13 +18,13 @@ export function TicketList() {
     useEffect(() => {
       fetchTickets()
     }, [])
-    const [tickets, setTickets] = useState(mockTickets)
+    const [tickets, setTickets] = useState<Ticket[]>([])
     const navigate = useNavigate()
   
     const handleSearch = (value: string) => {
       setSearchValue(value)
-      const filtered = mockTickets.filter(ticket => 
-        ticket.elevatorId.toLowerCase().includes(value.toLowerCase()) ||
+      const filtered = tickets.filter(ticket => 
+        ticket.elevator_id.toLowerCase().includes(value.toLowerCase()) ||
         ticket.location.toLowerCase().includes(value.toLowerCase())
       )
       setTickets(filtered)
@@ -89,8 +60,8 @@ export function TicketList() {
               key={ticket.id}
               ticketOverview={{
                 ...ticket,
-                elevator_id: ticket.elevatorId,
-                create_time: ticket.createTime,
+                elevator_id: ticket.elevator_id,
+                create_time: ticket.create_time,
                 status: ticket.status,
                 priority: ticket.priority,
                 description: ticket.description,
