@@ -109,21 +109,21 @@ export default function AIDiagnosis() {
           throw err;
         }
         const decoder = new TextDecoder("utf-8")
+        let accumulatedText = '';
 
         const reader = response.body.getReader();
         const stream = new ReadableStream({
           start(controller) {
             function push() {
-              const chunks: OutputType[] = []
               reader.read().then(({done, value}) => {
                 if (done) {
-                  onSuccess(chunks)
+                  onSuccess([accumulatedText])
                   controller.close();
                   return;
                 }
                 const chunk = decoder.decode(value, {stream: true})
-                onUpdate(chunk);
-                chunks.push(chunk);
+                accumulatedText += chunk;
+                onUpdate(accumulatedText);
                 controller.enqueue(value);
                 push();
               }).catch(err => {
