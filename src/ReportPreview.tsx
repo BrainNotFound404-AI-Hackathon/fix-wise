@@ -44,7 +44,7 @@ export default function ReportPreview() {
       try {
         const response = await api.post('/report/generation', {
           session_id: id,
-          messages: []
+          messages: [{ role: "user", content: "dd" }]
         });
         setSolution(response.data.solutions);
         setResult(response.data.results);
@@ -94,7 +94,7 @@ export default function ReportPreview() {
               onChange={setSolution}
               rows={3}
               className="text-base"
-              maxLength={500}
+              maxLength={1000}
               showCount
               placeholder="Describe your solution..."
             />
@@ -106,7 +106,7 @@ export default function ReportPreview() {
               onChange={setResult}
               rows={3}
               className="text-base"
-              maxLength={500}
+              maxLength={1000}
               showCount
               placeholder="Describe the result..."
             />
@@ -117,8 +117,9 @@ export default function ReportPreview() {
           text="Confirm & Submit"
           onClick={() => {
             message.success("Report submitted!");
-            api.put(`/tickets/${id}`);
-            navigate(-1);
+            api.put(`/tickets/${id}`).then(() => {
+              navigate('/');
+            });
           }}
         />
       </div>
